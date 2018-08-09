@@ -10,10 +10,10 @@ resource "aws_launch_configuration" "ecs-example-launchconfig" {
   iam_instance_profile = "${aws_iam_instance_profile.ecs-ec2-role.id}"
   security_groups      = ["${aws_security_group.ecs-securitygroup.id}"]
   user_data            = "#!/bin/bash\necho 'ECS_CLUSTER=example-cluster' > /etc/ecs/ecs.config\nstart ecs"
-  lifecycle              { create_before_destroy = true }
+
 }
 resource "aws_autoscaling_group" "ecs-example-autoscaling" {
-  name                 = "ecs-example-autoscaling"
+  name                 = "ecs-example-autoscaling21"
   vpc_zone_identifier  = ["${aws_subnet.main-public-1.id}", "${aws_subnet.main-public-2.id}"]
   launch_configuration = "${aws_launch_configuration.ecs-example-launchconfig.name}"
   min_size             = 1
